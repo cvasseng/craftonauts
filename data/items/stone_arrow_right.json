@@ -1,0 +1,60 @@
+{
+	"name": "stone_arrow_right",
+	"description": "Right Arrow Stone Formation",
+	"sprite": "arrow_right.png",
+	"mineable": false,
+	"consumable" : false,
+	"foundInWorld" : false,
+	"proximityRadius": 1,
+	"craftInput" : [
+		{
+			"rock" : 1
+		}
+		
+	],
+
+	"animations": {
+
+		"activated": {
+			"speed": 0.2,
+			"frames": [0]
+		},
+
+		"idle": {
+			"speed": 0.4,
+			"frames": [0]
+		},
+
+		"decay": {
+			"speed": 0.4,
+			"frames": [0]
+		}
+
+	},
+
+	"ondrop": {
+		"health":0,
+		"water":0,
+		"sanity":0,
+		"food":0,
+		"pulse":0
+	},
+
+	"onclose": {
+		"health":0,
+		"water":0,
+		"sanity":0,
+		"food":0,
+		"pulse":0
+	},
+
+	"onactivate": {
+		"health":0,
+		"water":0,
+		"sanity":0,
+		"food":0,
+		"pulse":0
+	}
+
+	
+}

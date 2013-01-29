@@ -1,0 +1,65 @@
+{
+	"name": "dynamite",
+	"description": "Dynamite",
+	"sprite": "dynamite.png",
+	"mineable": false,
+	"consumable" : true,
+	"foundInWorld" : false,
+	"proximityRadius": 1,
+	"activateDelay": 5,
+	"craftInput" : [
+		{
+		"sulphuric_acid" : 1,
+		"nitric_acid" : 1
+		}
+	],
+
+	"animations": {
+
+		"activated": {
+			"speed": 0.2,
+			"frames": [0,1,2,3]
+		},
+
+		"idle": {
+			"speed": 0.2,
+			"frames": [0,1,2,3]
+		},
+
+		"decay": {
+			"speed": 0.2,
+			"frames": [0,1,2,3]
+		}
+
+	},
+	
+	"ondrop": {
+		"health":0,
+		"water":0,
+		"oxygen":0,
+		"food":0,
+		"pulse":0
+	},
+
+	"onclose": {
+		"health":0,
+		"water":0,
+		"oxygen":0,
+		"food":0,
+		"pulse":0
+	},
+
+	"onactivate": {
+		"health":0,
+		"water":0,
+		"oxygen":0,
+		"food":0,
+		"pulse":0
+	},
+		
+	"oncrafted": {
+		"score" : 3
+	}
+
+	
+}

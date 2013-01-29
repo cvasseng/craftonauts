@@ -1,0 +1,68 @@
+{
+	"name": "lemon_battery",
+	"description": "Lemon Battery",
+	"sprite": "lemon_battery.png",
+	"mineable": false,
+	"consumable" : true,
+	"foundInWorld" : false,
+	"proximityRadius": 1,
+	"craftInput" : [
+		{
+		"lemon" : 1,
+		"copper_rod" : 1,
+		"zink" : 1
+		}
+	],
+
+	"animations": {
+
+		"activated": {
+			"speed": 0.2,
+			"frames": [0]
+		},
+
+		"idle": {
+			"speed": 0.2,
+			"frames": [0]
+		},
+
+		"decay": {
+			"speed": 0.2,
+			"frames": [0]
+		}
+
+	},
+	
+	"ondrop": {
+		"health":0,
+		"water":0,
+		"oxygen":0,
+		"food":0,
+		"pulse":0
+	},
+
+	"onclose": {
+		"health":0,
+		"water":0,
+		"oxygen":0,
+		"food":0,
+		"pulse":0
+	},
+
+	"onactivate": {
+		"health":0,
+		"water":0,
+		"oxygen":0,
+		"food":0,
+		"pulse":0,
+		"lightrange":0.1,
+		"score":1
+	},
+	
+		
+	"oncrafted": {
+		"score" : 1
+	}
+
+	
+}

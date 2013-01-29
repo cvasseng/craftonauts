@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Impact Game</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Offside' rel='stylesheet' type='text/css'>
+
+	<style type="text/css">
+		html,body {
+			background-color: #000;
+			color: #fff;
+			font-family: helvetica, arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			font-size: 12pt;
+			width:100%;
+			height:100%;
+		}
+		
+		#canvas {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+		}
+
+		.play_btn {
+			position:fixed;
+			left:10px;
+			bottom:10px;
+			margin: auto auto;
+			background-color:#EEE;
+			border-radius:5px;
+			padding:4px;
+			color:#000;
+			cursor:pointer;
+		}
+
+		.stat_panel {
+			position:fixed;
+			left:10px;
+			top:10px;
+
+		}
+
+		.stat_column {
+			position:relative;
+			width:28px;
+			height:120px;
+			background-size: 100%;
+			float:left;
+		}
+
+		.stat_bar {
+			position:absolute;
+			left:0px;
+			bottom:2px;
+			background-color:#FF0000;
+			width:18px;
+			height:40px;
+			max-height:80px;
+			margin-left:5px;
+			background-repeat: repeat-y;
+			background-size: 100%;
+		}
+
+		/**************************************************************************/
+
+		.stat_column_health {
+			background-image:url(media/bar_health_bg.png);
+		}
+
+		.stat_bar_health {
+			background-image:url(media/bar_health_fill.png);
+		}
+
+		.stat_column_pulse {
+			background-image:url(media/bar_pulse_bg.png);
+		}
+
+		.stat_bar_pulse {
+			background-image:url(media/bar_pulse_fill.png);
+		}
+
+		.stat_column_food {
+			background-image:url(media/bar_food_bg.png);
+		}
+
+		.stat_bar_food {
+			background-image:url(media/bar_food_fill.png);
+		}
+
+		.stat_column_water {
+			background-image:url(media/bar_water_bg.png);
+		}
+
+		.stat_bar_water {
+			background-image:url(media/bar_water_fill.png);
+		}
+
+		.stat_column_sanity {
+			background-image:url(media/bar_sanity_bg.png);
+		}
+
+		.stat_bar_sanity {
+			background-image:url(media/bar_sanity_fill.png);
+		}
+
+		/**************************************************************************/
+
+		.inventory_panel {
+			font-family: 'Offside', cursive;
+			color:#FFF;
+			position:fixed;
+			left:10px;
+			top:140px;
+			z-index: 10;
+			height:300px;
+			width:250px;
+			overflow-y:auto;
+			overflow-x:hidden;
+		}
+
+		.inventory_panel div {
+			font-size:32px;
+			font-weight:bold;
+		}
+
+		.inventory_panel li {
+			list-style: none;
+			border:none;
+			text-align: left;
+			font-size:16px;
+			cursor:pointer;
+		}
+
+		.inventory-item-selected {
+			background-color:#EEE;
+			color:#333;
+			cursor: default !important;
+		}
+
+		.crafting_panel {
+			font-family: 'Offside', cursive;
+			color:#FFF;
+			position:fixed;
+			right:10px;
+			top:10px;
+			z-index: 10;
+			width:350px;
+		}
+
+		.crafting_panel div {
+			font-size:16px;
+			font-weight:bold;
+			margin-top:10px;
+			border-bottom:1px solid #FFF;
+			height:20px;
+		}
+
+		.crafting_panel span {
+			float:right;
+			cursor:pointer;
+			border-radius:4px;
+			background-color:#666;
+			padding:2px;
+		}
+
+		.crafting_panel li {
+			font-size:12px;
+			list-style: none;
+			margin-left:10px;
+		}
+
+		.item-hint {
+			position:fixed;
+			bottom:40px;
+			left:10px;
+			font-size:14px;
+			font-family: 'Offside', cursive;
+		}
+
+		.negative {
+			color:#AA3333;
+		}
+
+		.positive {
+			color:#33AA33;
+		}
+
+		#darkness {
+			display: none;
+		}
+
+		.score {
+			font-family: 'Offside', cursive;
+			position:fixed;
+			right:10px;
+			bottom:10px;
+			width:200px;
+			z-index: 100;
+			font-size: 30px;
+			text-align: center;
+			color:#999;
+			margin:0 auto;
+		}
+
+		.splash {
+			position:fixed;
+			left:0px;
+			top:0px;
+			height:100%;
+			width:100%;
+			background-color:#000;
+			z-index: 400;
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-image: url(media/Craftonauts.png);
+		}
+
+		.splash div {
+			margin:0 auto;
+			font-family: 'Offside', cursive;
+			font-size:40px;
+			font-weight: bold;
+			width:100%;
+			text-align: center;
+		}
+
+		.splash input {
+			position:relative;
+			border-radius:4px;
+			background-color:#EEE;
+			outline: none;
+			margin:auto;
+			width:100%;
+		}
+
+		.splash button {
+			width:100%;
+		}
+
+	</style>
+	<script src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="game.min.js"></script>
+	<script src="networking.js"></script>
+</head>
+<body>
+
+	<div id="splash" class="splash">
+		
+
+		<div style="width:10%;text-align:left;bottom:50px;position:absolute;left:50px;">
+			<div style="font-size:14px;text-align:center;">Enter your name</div>
+			<input id="nickname"><button id="start_game">Start the madness</button>
+		</div>
+	</div>
+
+	<div class="score" id="score">1337</div>
+
+	<div class="item-hint" id="item-hint">
+
+	</div>
+
+	<div class = "inventory_panel" >
+		<div>Inventory</div>
+		<div id="inventory">
+		</div>
+	</div>
+
+	<div class="crafting_panel">
+		<div id="craftlist" style="border:none;">
+
+		</div>
+	</div>
+
+	<div class="stat_panel">
+
+
+		<div class="stat_column stat_column_health">
+			<div class="stat_bar stat_bar_health" id="stat-health"></div>
+		</div>
+
+		<div class="stat_column stat_column_food">
+			<div class="stat_bar stat_bar_food" id="stat-food"></div>
+		</div>
+
+		<div class="stat_column stat_column_water">
+			<div class="stat_bar stat_bar_water" id="stat-water"></div>
+		</div>
+
+		
+
+	</div>
+	<canvas id="canvas"></canvas>
+	<canvas id="darkness"></canvas>
+	<canvas id="compass" style="display:none;" width="1024" height="768"></canvas>
+
+</body>
+<script>
+	
+	var ok = document.getElementById('start_game');
+	var nick = document.getElementById('nickname');
+
+	ok.onclick = function () {
+		document.getElementById('splash').style.display = 'none';
+		miner.connect(nick.value);
+	};
+
+//	miner.doSplash();
+</script>
+</html>

@@ -1,0 +1,17 @@
+{
+  "author": "Team Mine",
+  "name": "miner-escape",
+  "description": "Mining simulator supreme",
+  "version": "0.0.1",
+  "licence":"MIT",
+  "private":true,
+  "bin": {
+    "miner-escape":"./bin/miner-escape.js"
+  },
+  "dependencies": {
+   	"colors":"*",
+    "optimist":">=0.0.1",
+    "socket.io":"*",
+    "express":"*"
+  }
+}

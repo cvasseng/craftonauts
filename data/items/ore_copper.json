@@ -1,0 +1,57 @@
+{
+	"name": "ore_copper",
+	"description": "Copper Ore",
+	"sprite": "ore_copper.png",
+	"mineable": true,
+	"consumable" : false,
+	"foundInWorld" : true,
+	"proximityRadius": 1,
+	"craftInput" : [
+		
+	],
+
+	"animations": {
+
+		"activated": {
+			"speed": 0.2,
+			"frames": [6]
+		},
+
+		"idle": {
+			"speed": 0.4,
+			"frames": [0, 1, 2, 3, 2]
+		},
+
+		"decay": {
+			"speed": 0.4,
+			"frames": [4, 5]
+		}
+
+	},
+	
+	"ondrop": {
+		"health":0,
+		"water":0,
+		"oxygen":0,
+		"food":0,
+		"pulse":0
+	},
+
+	"onclose": {
+		"health":0,
+		"water":0,
+		"oxygen":0,
+		"food":0,
+		"pulse":0
+	},
+
+	"onactivate": {
+		"health":0,
+		"water":0,
+		"oxygen":0,
+		"food":0,
+		"pulse":0
+	}
+
+	
+}

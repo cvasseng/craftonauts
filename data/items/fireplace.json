@@ -1,0 +1,70 @@
+{
+	"name": "fireplace",
+	"description": "Fireplace",
+	"sprite": "fireplace.png",
+	"mineable": false,
+	"consumable" : false,
+	"foundInWorld" : false,
+	"proximityRadius": 3,
+	"craftInput" : [
+	{
+		"wood" : 1,
+		"lighter" : 1
+	},
+	{
+		"wood" : 1,
+		"match" : 1
+	}
+		
+	],
+
+	"animations": {
+
+		"activated": {
+			"speed": 0.2,
+			"frames": [0,1,2,3]
+		},
+
+		"idle": {
+			"speed": 0.2,
+			"frames": [0,1,2,3]
+		},
+
+		"decay": {
+			"speed": 0.4,
+			"frames": [0,1,2,3]
+		}
+
+	},
+
+	"ondrop": {
+		"health":0,
+		"water":0,
+		"sanity":0,
+		"food":0,
+		"pulse":0
+	},
+
+	"onclose": {
+		"health":0.05,
+		"water":0,
+		"sanity":0,
+		"food":0,
+		"pulse":0.05
+	},
+
+	"onactivate": {
+		"health":0,
+		"water":0,
+		"sanity":0,
+		"food":0,
+		"pulse":0
+	},
+	
+		
+	"oncrafted": {
+		"score" : 2
+	}
+
+	
+}

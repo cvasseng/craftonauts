@@ -1,0 +1,66 @@
+{
+	"name": "gold_coin",
+	"description": "Gold Coin",
+	"sprite": "gold_coin.png",
+	"mineable": false,
+	"consumable" : true,
+	"foundInWorld" : false,
+	"proximityRadius": 1,
+	"craftInput" : [
+		{
+			"ore_gold" : 1,
+			"sandpaper" : 1	
+		}		
+	],
+
+	"animations": {
+
+		"activated": {
+			"speed": 0.2,
+			"frames": [0]
+		},
+
+		"idle": {
+			"speed": 0.4,
+			"frames": [0]
+		},
+
+		"decay": {
+			"speed": 0.4,
+			"frames": [0]
+		}
+
+	},
+
+	"ondrop": {
+		"health":0,
+		"water":0,
+		"sanity":0,
+		"food":0,
+		"pulse":0
+	},
+
+	"onclose": {
+		"health":0,
+		"water":0,
+		"sanity":0,
+		"food":0,
+		"pulse":0
+	},
+
+	"onactivate": {
+		"health":0,
+		"water":0,
+		"sanity":0,
+		"food":0,
+		"pulse":0,
+		"score":10
+	},
+	
+		
+	"oncrafted": {
+		"score" : 1
+	}
+
+	
+}
